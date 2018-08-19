@@ -4,7 +4,7 @@ function directToAuth () {
  if ((localStorage.getItem("hasCodeRunBefore") === null && localStorage.getItem("hash") === null) || (localStorage.getItem("hashdate") === null || (new Date() - Date.parse(localStorage.getItem("hashdate")) >= 300000) )) {
   
         var client_id = 'a4625f59665f4e2f9dcc201277f7c53b'; // Your client id
-        var redirect_uri = window.location.href.startsWith('http://localhost:8000/') ? 'http://localhost:8000/' : 'https://ghe.spotify.net/pages/skyler/track-string-to-uri/'; // Your redirect uri
+        var redirect_uri = window.location.href.startsWith('http://localhost:8000/') ? 'http://localhost:8000/' : 'http://www.skybjohnson.com/spotify'; // Your redirect uri
 
         var url = 'https://accounts.spotify.com/authorize';
         url += '?response_type=token';
