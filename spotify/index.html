@@ -29,7 +29,7 @@
 
           <a class="navbar-brand" href="#">
             <span class="navbar-logo">Spotify</span>
-            <span class="navbar-title">Convert Text to URI</span>
+            <span class="navbar-title">Sky's Spotify Seeker</span>
           </a>
         </div>
         
@@ -38,7 +38,8 @@
 
     <div class="container">
 
-
+<br>
+<p> Once started, this site will skip your currently playing context every 60 seconds, and will jump to 25 seconds into the next track.<br><br>NOTE: You must have Spotify open and playing the context that you want to skim through. To stop, close or refresh the browser. <br>And yes, the Auth is broken, it is using Local Storage, lol 🤷‍♂️</p>
 <br>
 
 <tag autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
@@ -47,8 +48,9 @@
 
 
     </div>
-    <progress value="0" max="60" id="progressBar"></progress>
-
+<progress value="0" max="60" id="progressBar" style="
+    width: 500px;
+"></progress>
     </div><!-- /.container -->
 
     <!-- jQuery required for Bootstrap core JavaScript -->
