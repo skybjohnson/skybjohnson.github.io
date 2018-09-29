@@ -1,4 +1,4 @@
-// Spotify Web Data Connector - 9.8.16 - Madeleine Corneli
+// Spotify Web Data Connector - Skyler Johnson, 9/28/18, based on code by  Madeleine Corneli https://github.com/maddyloo/Spotify_WDC/blob/master/main.js
 
 var myConnector = tableau.makeConnector();
 
