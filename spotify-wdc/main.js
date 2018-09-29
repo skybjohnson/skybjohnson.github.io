@@ -3,7 +3,7 @@
 var myConnector = tableau.makeConnector();
 
 var CLIENT_ID = "99772937ce6e47d08d9f1d26052404c3";
-var REDIRECT_URI = "http://http://skybjohnson.com/spotify-wdc/";
+var REDIRECT_URI = "http://skybjohnson.com/spotify-wdc/";
 var url = "https://accounts.spotify.com/authorize/?client_id=" + 
 CLIENT_ID + 
 "&response_type=token&redirect_uri=" + REDIRECT_URI + 
