@@ -220,7 +220,7 @@ function accessLimitCallback(response){
 					var uri = song_names[j]["track"]["uri"]
 					var track_popularity = song_names[j]["track"]["popularity"]
 					// add the song data to tableData
-					tableData.push({"playlist" : playlist_name, "song" : song_title, "date_added": date_added, "artist" : artist, "duration_ms" : duration_ms, "uri" : uri, "popularity" : track_popularity, "position" : j+1})
+					tableData.push({"playlist" : playlist_name, "song" : song_title, "date_added": date_added, "artist" : artist, "duration_ms" : duration_ms, "uri" : uri, "popularity" : track_popularity, "position" : j})
 				}
 			}
 			table.appendRows(tableData);
