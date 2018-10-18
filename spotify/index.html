@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style>
+    #albumart {
+      width: 400px;
+      height: 400px;
+    }
+    </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +16,7 @@
     <title>Sky's Spotify Seeker</title>
 
     <!-- sp-bootstrap.min.css includes Bootstrap core CSS -->
-    <link href="https://sp-bootstrap.global.ssl.fastly.net/8.0.0/sp-bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://sp-bootstrap.global.ssl.fastly.net/8.0.0/sp-bootstrap.min.css" rel="stylesheet"> -->
 
     <!-- Custom styles for this template -->
 
@@ -21,8 +27,8 @@
     <![endif]-->
   </head>
 
-  <body>
-
+  <body id="body" style="background: url('') repeat">
+<!-- 
     <div class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -35,30 +41,36 @@
         
       </div>
     </div>
-
+ -->
     <div class="container">
 
 <br>
-<p> Once started, this site will skip your currently playing context every 60 seconds, and will jump to 25 seconds into the next track.<br><br>NOTE: You must have Spotify open and playing the context that you want to skim through. To stop, close or refresh the browser. <br>And yes, the Auth is broken, it is using Local Storage, lol 🤷‍♂️</p>
+<p> Once started, this site will skip your currently playing context every 60 seconds, and will jump to 25 seconds into the next track.<br><br>NOTE: You must have Spotify open and playing the context that you want to skim through. To stop, close or refresh the browser.</p>
 <br>
 
 <tag autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
 
-<button id='request' class='generate btn btn-green'>Start Sky's Spotify Seeker</button>
+<button id='request'>Start Sky's Spotify Seeker</button>
 <br>
 <br>
 
-<progress value="0" max="60" id="progressBar" style="
-    width: 350px;
+<progress value="0" max="100" id="progressBar" style="
+    width: 400px;
 "></progress>
+
+<div style="background: url('logo.png') repeat"></div>
+<img id="albumart" src="" height="400" width="400">
+<img src="powered.gif" >
+
+<!-- <img id="gif" src="logo.png" height="400" width="400"> -->
     </div>
     </div><!-- /.container -->
 
     <!-- jQuery required for Bootstrap core JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="auth.js"></script>
-    <script src="d3-queue.min.js"></script>
-    <script src="https://sp-bootstrap.global.ssl.fastly.net/8.0.0/sp-bootstrap.min.js"></script>
+    <!-- <script src="d3-queue.min.js"></script> -->
+    <!-- <script src="https://sp-bootstrap.global.ssl.fastly.net/8.0.0/sp-bootstrap.min.js"></script> -->
 
   </body>
 </html>

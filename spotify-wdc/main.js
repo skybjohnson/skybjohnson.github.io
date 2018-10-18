@@ -3,7 +3,8 @@
 var myConnector = tableau.makeConnector();
 
 var CLIENT_ID = "99772937ce6e47d08d9f1d26052404c3";
-var REDIRECT_URI = "http://www.skybjohnson.com/spotify-wdc/";
+// var REDIRECT_URI = "http://www.skybjohnson.com/spotify-wdc/";
+var REDIRECT_URI = "http://localhost:8000/";
 var url = "https://accounts.spotify.com/authorize/?client_id=" + 
 CLIENT_ID + 
 "&response_type=token&redirect_uri=" + REDIRECT_URI + 
@@ -16,6 +17,7 @@ var playlistData = [];
 var songData = [];
 var limit = 1;
 
+
 // AJAX call: user accessToken to return user_id
 function get_user_info() {
 
@@ -27,15 +29,8 @@ function get_user_info() {
 		success: accessCallback
 	})
 
- // fetch("https://api.spotify.com/v1/me", 
- //    {
- //      method: "GET",
- //      headers: { Authorization: "Bearer " + accessToken}
- //    })
- //    .then( function(res) {return res.json() })
- //    .then( function(data) { accessCallback(data)})
-
 };
+
 
 function get_playlist_limit() {
 	// console.log("get user info")
@@ -47,20 +42,14 @@ function get_playlist_limit() {
 		success: accessLimitCallback
 	})
 
- // fetch("https://api.spotify.com/v1/me", 
- //    {
- //      method: "GET",
- //      headers: { Authorization: "Bearer " + accessToken}
- //    })
- //    .then( function(res) {return res.json() })
- //    .then( function(data) { accessCallback(data)})
-
 };
+
 
 // AJAX call: sends list of user playlists to playlistCallback
 function get_playlists(){
 	var offset = 0;
 	// console.log("attempting to get playlists")
+
 
 	var plurl = 'https://api.spotify.com/v1/users/' + user_id + '/playlists?offset='+ offset + '&limit=50';
 	var promises = [];
@@ -75,7 +64,8 @@ function get_playlists(){
 					headers: {
 						'Authorization': 'Bearer ' + accessToken
 					},
-					success: playlistCallback
+					success: playlistCallback,
+					timeout: 10000
 				})
 
     		offset+=50
@@ -84,13 +74,13 @@ function get_playlists(){
 
     	$.when.apply(null,promises).done(function() {
 
-    	// console.log(playlistData)
-    	// console.log(JSON.stringify(playlistData))
-    	// // tableau.init();
-    	tableau.connectionData = JSON.stringify([playlistData, user_id, accessToken])
-    	// console.log(tableau.connectionData);
-		tableau.connectionName = "Spotify Playlist Connector";
-		tableau.submit();
+    		console.log(playlistData)
+    		// console.log(JSON.stringify(playlistData))
+    		// // tableau.init();
+    		tableau.connectionData = JSON.stringify([playlistData, user_id, accessToken])
+    		// console.log(tableau.connectionData);
+			tableau.connectionName = "Spotify Playlist Connector";
+			tableau.submit();
 
     	}) 
 
@@ -187,7 +177,23 @@ function accessLimitCallback(response){
 					},
 					success: function(data){
 							songs.push(data);
-					}
+							console.log(data)
+					},
+					retryCount:0,
+					retryLimit:100,
+					retryTimeout:1000000,
+					timeout: 10000,
+					created : Date.now(),
+					error : function(xhr, textStatus, errorThrown ) {
+						console.log('retry-after',xhr.getResponseHeader('retry-after'))
+						console.log('RETRTYYYYYY')
+					    this.retryCount++;
+					    if (Date.now() - this.created > ((xhr.getResponseHeader('retry-after')+1)*1000) ) {
+					      console.log("Retrying");
+					      $.ajax(this);
+					      return;
+				    	}
+				    }
 				})
 			);
 			
